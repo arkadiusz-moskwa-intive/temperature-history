@@ -1,6 +1,5 @@
-export const TemperatureStore = class extends EventTarget {
+export const TemperatureStore = class {
   constructor(localStorageKey) {
-    super();
     this.localStorageKey = localStorageKey;
     this._readStorage();
   }
@@ -21,16 +20,14 @@ export const TemperatureStore = class extends EventTarget {
    */
   _save() {
     window.localStorage.setItem(this.localStorageKey, JSON.stringify(this.temperatures));
-    window.dispatchEvent(new CustomEvent('save'));
   }
 
   /**
    * Adds given temperature to the local storage. Additionally, ensures only 100 records are kept in storage
    *
    * @param {number} temperature Temperature record to add
-   * @param {number} lastUpdated When was the data last updated according to external API
    */
-  add({ temperature, lastUpdated }) {
+  add({ temperature }) {
     // We want to keep only 100 records in the local storage
     if (this.temperatures.length === 100) {
       this.temperatures.shift();
@@ -44,6 +41,9 @@ export const TemperatureStore = class extends EventTarget {
   }
 
   render() {
+    const currentTemperature = document.getElementById('current-temperature');
+    const lastTemperature = this.temperatures.slice(-1).pop();
+    currentTemperature.innerHTML = lastTemperature.temperature;
     const tableBody = document.getElementById('temperature-data');
     tableBody.innerHTML = '';
     this.temperatures.forEach((data) => {
@@ -51,7 +51,7 @@ export const TemperatureStore = class extends EventTarget {
       const date = new Date(data.id);
       row.innerHTML = `
         <tr>
-            <td>${data.temperature}</td>
+            <td class="temperature">${data.temperature}</td>
             <td>${date.toUTCString()}</td>
         </tr>
       `;
