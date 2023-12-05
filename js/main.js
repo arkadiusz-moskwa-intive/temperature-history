@@ -1,14 +1,21 @@
 import '../css/style.css'
-import viteLogo from '/vite.svg'
+import {weatherApi} from "./weatherApi.js";
 
 document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <p class="read-the-docs">
+  <section>
+    <h1>Temperature history</h1>
+    <div>
+        <button>Test</button>
+    </div>
+    <div id="current-temperature"></div>
+    <p>
       Click on the Vite logo to learn more
     </p>
-  </div>
+  </section>
 `
+
+const api = new weatherApi(import.meta.env.VITE_WEATHER_API_KEY);
+document.querySelector('button').addEventListener('click', async () => {
+  const temperature = await api.getFor('Wroclaw');
+  document.querySelector('#current-temperature').innerHTML = `Current temperature is ${temperature} Celsius`;
+})
