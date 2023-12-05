@@ -39,8 +39,22 @@ export const TemperatureStore = class extends EventTarget {
     this.temperatures.push({
       temperature,
       lastUpdated,
-      id: 'temperature _' + Date.now()
+      id: Date.now()
     });
     this._save();
+  }
+
+  render() {
+    const tableBody = $('#temperature-table tbody');
+    tableBody.empty();
+    this.temperatures.forEach((data) => {
+      const date = new Date(data.id);
+      tableBody.append(`
+        <tr>
+            <td>${data.temperature}</td>
+            <td>${date.toUTCString()}</td>
+        </tr>
+      `)
+    });
   }
 }
