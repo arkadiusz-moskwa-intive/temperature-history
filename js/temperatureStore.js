@@ -1,6 +1,13 @@
+import {CurrentTemperature} from "./currentTemperature.js";
+import {TemperatureTableBody} from "./temperatureTableBody.js";
+import {TemperatureChart} from "./temperatureChart.js";
+
 export const TemperatureStore = class {
   constructor(localStorageKey) {
     this.localStorageKey = localStorageKey;
+    this.currentTemperature = new CurrentTemperature();
+    this.temperatureTableBody = new TemperatureTableBody();
+    this.temperatureChart = new TemperatureChart();
     this._readStorage();
   }
 
@@ -23,6 +30,27 @@ export const TemperatureStore = class {
   }
 
   /**
+   * Gets the last reading of temperature
+   *
+   * @returns {number}
+   * @private
+   */
+  _getLastTemperature() {
+    const lastElement = this.temperatures.slice(-1).pop();
+    return lastElement.temperature;
+  }
+
+  /**
+   * Gets the last epoch
+   *
+   * @returns {number}
+   * @private
+   */
+  _getLastEpoch() {
+    return this.temperatures.slice(-1).pop().id;
+  }
+
+  /**
    * Adds given temperature to the local storage. Additionally, ensures only 100 records are kept in storage
    *
    * @param {number} temperature Temperature record to add
@@ -40,22 +68,12 @@ export const TemperatureStore = class {
     this._save();
   }
 
+  /**
+   * Renders all required components
+   */
   render() {
-    const currentTemperature = document.getElementById('current-temperature');
-    const lastTemperature = this.temperatures.slice(-1).pop();
-    currentTemperature.innerHTML = lastTemperature.temperature;
-    const tableBody = document.getElementById('temperature-data');
-    tableBody.innerHTML = '';
-    this.temperatures.forEach((data) => {
-      const row = document.createElement('tr');
-      const date = new Date(data.id);
-      row.innerHTML = `
-        <tr>
-            <td class="temperature">${data.temperature}</td>
-            <td>${date.toUTCString()}</td>
-        </tr>
-      `;
-      tableBody.insertAdjacentElement('beforeend', row);
-    });
+    this.currentTemperature.render(this._getLastTemperature());
+    this.temperatureTableBody.render(this.temperatures);
+    this.temperatureChart.render(this.temperatures, this._getLastEpoch());
   }
 }

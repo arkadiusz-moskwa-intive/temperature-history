@@ -2,29 +2,28 @@ import '../css/style.css'
 import {WeatherApi} from "./weatherApi.js";
 import {TemperatureStore} from "./temperatureStore.js";
 
-const city = 'Wroclaw';
+const city = 'Warsaw';
 
 document.querySelector('#app').innerHTML = `
     <h1>Temperature in ${city}</h1>
     <div id="content">
         <div>
-            <p>Current temperature: <span id="current-temperature" class="temperature"></span></p>
-            <div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Temperature</th>
-                            <th>Time</th>
-                        </tr>            
-                    </thead>
-                    <tbody id="temperature-data"></tbody>
-                </table>
-            </div>
+            <h2>Current temperature: <span id="current-temperature" class="temperature"></span></h2>
+        </div>
+        <div id="chart-body">
+            <canvas id="temperature-chart"></canvas>
         </div>
         <div>
-            <canvas></canvas>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Temperature</th>
+                        <th>Time</th>
+                    </tr>            
+                </thead>
+                <tbody id="temperature-data"></tbody>
+            </table>
         </div>
-        
     </div>
     
 `;
