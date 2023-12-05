@@ -2,7 +2,7 @@ import '../css/style.css'
 import {WeatherApi} from "./weatherApi.js";
 import {TemperatureStore} from "./temperatureStore.js";
 import $ from 'jquery';
-import {fetchCurrentTemperature} from "./helpers.js";
+import {storeCurrentTemperature} from "./helpers.js";
 
 window.$ = $;
 
@@ -33,11 +33,11 @@ $(document).ready(async () => {
   `);
 
   const api = new WeatherApi(import.meta.env.VITE_WEATHER_API_KEY);
-  const store = new TemperatureStore('temperature-store');
-  await fetchCurrentTemperature(api, store, city)
+  const store = new TemperatureStore('temperature-store-' + city);
+  await storeCurrentTemperature(api, store, city)
   const requestTimeout = 10000; // we want to request the API every 10 seconds
   window.setInterval(async () => {
-    await fetchCurrentTemperature(api, store, city);
+    await storeCurrentTemperature(api, store, city);
   }, requestTimeout);
 });
 

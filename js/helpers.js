@@ -5,8 +5,8 @@
  * @param {TemperatureStore} store
  * @param {string} city
  */
-export const fetchCurrentTemperature = async (api, store, city) => {
+export const storeCurrentTemperature = async (api, store, city) => {
   const {temperature} = await api.getFor(city);
-  store.add({temperature});
+  store.add({temperature, city});
   store.render();
 }
