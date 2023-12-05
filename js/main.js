@@ -8,9 +8,6 @@ document.querySelector('#app').innerHTML = `
         <button>Test</button>
     </div>
     <div id="current-temperature"></div>
-    <p>
-      Click on the Vite logo to learn more
-    </p>
   </section>
 `
 
