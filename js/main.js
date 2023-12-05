@@ -9,14 +9,14 @@ $(document).ready(() => {
   $('#app').html(`
     <section>
         <h1>Temperature history</h1>
-        <table id="temperature-table">
+        <table>
             <thead>
                 <tr>
                     <th>Temperature</th>
                     <th>Time</th>
                 </tr>            
             </thead>
-            <tbody></tbody>
+            <tbody id="temperature-data"></tbody>
         </table>
     </section>
   `);

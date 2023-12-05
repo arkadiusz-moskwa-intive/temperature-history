@@ -8,7 +8,7 @@ export const WeatherApi = class {
    * Gets current temperature for given city
    *
    * @param {string} city City to check for temperature
-   * @returns {Promise<{temperature: number, lastUpdated: number}>}
+   * @returns {Promise<{temperature: number}>}
    */
   async getFor(city) {
     return await fetch(this.baseUrl + '/current.json?' + new URLSearchParams({
@@ -16,10 +16,9 @@ export const WeatherApi = class {
       q: city
     }))
       .then(response => response.json())
-      .then( ({ current: { temp_c, last_updated_epoch } }) => {
+      .then( ({ current: { temp_c } }) => {
         return {
           temperature: temp_c,
-          lastUpdated: last_updated_epoch
         };
       });
   }

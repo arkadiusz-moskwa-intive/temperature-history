@@ -38,23 +38,24 @@ export const TemperatureStore = class extends EventTarget {
 
     this.temperatures.push({
       temperature,
-      lastUpdated,
       id: Date.now()
     });
     this._save();
   }
 
   render() {
-    const tableBody = $('#temperature-table tbody');
-    tableBody.empty();
+    const tableBody = document.getElementById('temperature-data');
+    tableBody.innerHTML = '';
     this.temperatures.forEach((data) => {
+      const row = document.createElement('tr');
       const date = new Date(data.id);
-      tableBody.append(`
+      row.innerHTML = `
         <tr>
             <td>${data.temperature}</td>
             <td>${date.toUTCString()}</td>
         </tr>
-      `)
+      `;
+      tableBody.insertAdjacentElement('beforeend', row);
     });
   }
 }
