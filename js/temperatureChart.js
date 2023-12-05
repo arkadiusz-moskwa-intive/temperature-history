@@ -2,7 +2,7 @@ import Chart from "chart.js/auto";
 
 export const TemperatureChart = class {
   constructor() {
-    this.element = document.getElementById('temperature-chart').getContext('2d');
+    this.element = $('#temperature-chart');
     this.chart = null;
   }
 

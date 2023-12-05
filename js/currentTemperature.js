@@ -1,6 +1,6 @@
 export const CurrentTemperature = class {
   constructor() {
-    this.element = document.getElementById('current-temperature')
+    this.element = $('#current-temperature')
   }
 
   /**
@@ -9,6 +9,6 @@ export const CurrentTemperature = class {
    * @param temperature Current temperature
    */
   render(temperature) {
-    this.element.innerHTML = temperature;
+    this.element.html(temperature);
   }
 }

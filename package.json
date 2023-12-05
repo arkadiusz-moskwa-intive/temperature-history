@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@rollup/plugin-inject": "^5.0.5",
     "vite": "^5.0.0"
   },
   "dependencies": {
-    "chart.js": "^4.4.1"
+    "chart.js": "^4.4.1",
+    "jquery": "^3.7.1"
   }
 }

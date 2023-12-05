@@ -1,10 +1,15 @@
 import '../css/style.css'
 import {WeatherApi} from "./weatherApi.js";
 import {TemperatureStore} from "./temperatureStore.js";
+import $ from 'jquery';
+import {fetchCurrentTemperature} from "./helpers.js";
 
-const city = 'Warsaw';
+window.$ = $;
 
-document.querySelector('#app').innerHTML = `
+const city = 'Wroclaw';
+
+$(document).ready(async () => {
+  $('#app').html(`
     <h1>Temperature in ${city}</h1>
     <div id="content">
         <div>
@@ -24,19 +29,15 @@ document.querySelector('#app').innerHTML = `
                 <tbody id="temperature-data"></tbody>
             </table>
         </div>
-    </div>
-    
-`;
+    </div> 
+  `);
 
-
-const api = new WeatherApi(import.meta.env.VITE_WEATHER_API_KEY);
-const store = new TemperatureStore('temperature-store');
-store.render();
-const requestTimeout = 10000; // we want to request the API every 10 seconds
-window.setInterval(async () => {
-  const {temperature} = await api.getFor(city);
-  store.add({temperature});
-  store.render();
-}, requestTimeout);
-
+  const api = new WeatherApi(import.meta.env.VITE_WEATHER_API_KEY);
+  const store = new TemperatureStore('temperature-store');
+  await fetchCurrentTemperature(api, store, city)
+  const requestTimeout = 10000; // we want to request the API every 10 seconds
+  window.setInterval(async () => {
+    await fetchCurrentTemperature(api, store, city);
+  }, requestTimeout);
+});
 
