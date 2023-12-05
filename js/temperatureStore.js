@@ -33,7 +33,7 @@ export const TemperatureStore = class extends EventTarget {
   add({ temperature, lastUpdated }) {
     // We want to keep only 100 records in the local storage
     if (this.temperatures.length === 100) {
-      this.temperatures.pop();
+      this.temperatures.shift();
     }
 
     this.temperatures.push({
