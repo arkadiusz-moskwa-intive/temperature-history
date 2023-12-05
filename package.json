@@ -1,8 +1,9 @@
 {
   "name": "temperature-history",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
+  "description": "Sample temperature history app",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
