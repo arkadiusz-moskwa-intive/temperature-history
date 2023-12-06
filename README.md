@@ -20,3 +20,6 @@ This application uses [Weather API](https://www.weatherapi.com/) for its data, s
 - To build production ready app run `npm run build`
 - To preview production ready app run `npm run preview`
 - To run the test suite run `npm run cy:e2e`
+
+# Development notes
+App was written/built using `Node 20.10.0` and `npm 10.2.4`
