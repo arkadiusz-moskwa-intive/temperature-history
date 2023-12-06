@@ -1,6 +1,6 @@
 describe('Visiting the main page', () => {
   before(() => {
-    cy.setLocalStorage('temperature-store-Warsaw', JSON.stringify([
+    cy.setLocalStorage('temperature-store-' + Cypress.env('city'), JSON.stringify([
       {
         temperature: -4,
         id: 1701853024063,
@@ -27,7 +27,7 @@ describe('Visiting the main page', () => {
     cy.visit('/');
   });
   it('checks whether all important elements are present', () => {
-    cy.get('h1').should('contain.text', 'Temperature in');
+    cy.get('h1').should('contain.text', 'Temperature in ' + Cypress.env('city'));
     cy.get('h2').should('contain.text', 'Current temperature:');
     cy.get('#temperature-data tr').should('have.length.above', 5);
     cy.get('#temperature-chart').should('have.length', 1);
