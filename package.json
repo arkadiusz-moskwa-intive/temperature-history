@@ -8,11 +8,12 @@
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "e2e-server": "VITE_REQUEST_CITY=Warsaw vite",
     "cy:open-e2e": "cypress open --e2e --browser chrome",
     "cy:open-unit": "cypress open --component --browser chrome",
     "cy:run-e2e": "cypress run --e2e",
     "cy:run-unit": "cypress run --component",
-    "cy:e2e": "start-server-and-test start http-get://localhost:3000 cy:run-e2e"
+    "cy:e2e": "start-server-and-test e2e-server http-get://localhost:3000 cy:run-e2e"
   },
   "devDependencies": {
     "@rollup/plugin-inject": "^5.0.5",
