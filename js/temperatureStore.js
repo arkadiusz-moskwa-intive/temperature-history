@@ -41,16 +41,6 @@ export const TemperatureStore = class {
   }
 
   /**
-   * Gets the last epoch
-   *
-   * @returns {number}
-   * @private
-   */
-  _getLastEpoch() {
-    return this.temperatures.slice(-1).pop().id;
-  }
-
-  /**
    * Adds given temperature to the local storage. Additionally, ensures only 100 records are kept in storage
    *
    * @param {number} temperature Temperature record to add
@@ -74,6 +64,6 @@ export const TemperatureStore = class {
   render() {
     this.currentTemperature.render(this._getLastTemperature());
     this.temperatureTableBody.render(this.temperatures);
-    this.temperatureChart.render(this.temperatures, this._getLastEpoch());
+    this.temperatureChart.render(this.temperatures);
   }
 }

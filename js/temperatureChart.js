@@ -10,9 +10,8 @@ export const TemperatureChart = class {
    * Renders the component
    *
    * @param temperatures Temperatures to present
-   * @param lastEpoch Used to calculate difference in seconds on the chart
    */
-  render(temperatures, lastEpoch) {
+  render(temperatures) {
     if (this.chart) {
       this.chart.destroy();
     }
