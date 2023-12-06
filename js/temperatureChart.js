@@ -2,7 +2,7 @@ import Chart from "chart.js/auto";
 
 export const TemperatureChart = class {
   constructor() {
-    this.element = $('#temperature-chart');
+    this.elementSelector = '#temperature-chart';
     this.chart = null;
   }
 
@@ -16,7 +16,7 @@ export const TemperatureChart = class {
       this.chart.destroy();
     }
     this.chart = new Chart(
-      this.element,
+      $(this.elementSelector),
       {
         type: 'line',
         data: {

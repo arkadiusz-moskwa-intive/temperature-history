@@ -32,11 +32,16 @@ export const TemperatureStore = class {
   /**
    * Gets the last reading of temperature
    *
-   * @returns {number}
+   * @returns {number|null}
    * @private
    */
   _getLastTemperature() {
     const lastElement = this.temperatures.slice(-1).pop();
+
+    if (!lastElement) {
+      return null;
+    }
+
     return lastElement.temperature;
   }
 

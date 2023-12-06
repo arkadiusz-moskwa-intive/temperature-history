@@ -1,6 +1,10 @@
 export const TemperatureTableBody = class {
   constructor() {
-    this.element = $('#temperature-data');
+    this.elementSelector = '#temperature-data';
+  }
+
+  _getElement() {
+    return $(this.elementSelector);
   }
 
   /**
@@ -9,10 +13,11 @@ export const TemperatureTableBody = class {
    * @param temperatures Temperature data to present
    */
   render(temperatures) {
-    this.element.empty();
+    const element = this._getElement();
+    element.empty();
     temperatures.forEach((data) => {
       const date = new Date(data.id);
-      this.element.append(`
+      element.append(`
         <tr>
             <td class="temperature">${data.temperature}</td>
             <td>${date.toUTCString()}</td>
