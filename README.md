@@ -16,6 +16,6 @@ This application uses [Weather API](https://www.weatherapi.com/) for its data, s
 
 # Usage
 
-- To run a development instance run `npm run dev`
+- To run a development instance run `npm run start`
 - To build production ready app run `npm run build`
 - To preview production ready app run `npm run preview`
