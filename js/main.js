@@ -1,4 +1,4 @@
-import '../css/style.css'
+import '../css/style.css';
 import {WeatherApi} from "./weatherApi.js";
 import {TemperatureStore} from "./temperatureStore.js";
 import $ from 'jquery';
