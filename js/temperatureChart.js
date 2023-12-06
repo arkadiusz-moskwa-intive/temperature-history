@@ -31,7 +31,21 @@ export const TemperatureChart = class {
           animation: {
             duration: 0
           },
-          maintainAspectRatio: false
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Time ago [s]'
+              },
+            },
+            y: {
+              title: {
+                display: true,
+                text: 'temperature [' + String.fromCodePoint(8451) + ']'
+              }
+            }
+          }
         }
       },
     )

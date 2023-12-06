@@ -9,6 +9,10 @@ This application uses [Weather API](https://www.weatherapi.com/) for its data, s
 - Run `npm install`
 - Copy `.env` to `.env.local` and provide your API key under `VITE_WEATHER_API_KEY`
 
+# Optional
+
+- You can change the request interval via `VITE_REQUEST_INTERVAL` env variable
+- You can change the city being quered via `VITE_REQUEST_CITY` env variable
 
 # Usage
 

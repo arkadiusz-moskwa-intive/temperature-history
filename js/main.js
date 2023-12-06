@@ -6,7 +6,7 @@ import {storeCurrentTemperature} from "./helpers.js";
 
 window.$ = $;
 
-const city = 'Wroclaw';
+const city = import.meta.env.VITE_REQUEST_CITY;
 
 $(document).ready(async () => {
   $('#app').html(`
@@ -35,9 +35,9 @@ $(document).ready(async () => {
   const api = new WeatherApi(import.meta.env.VITE_WEATHER_API_KEY);
   const store = new TemperatureStore('temperature-store-' + city);
   await storeCurrentTemperature(api, store, city)
-  const requestTimeout = 10000; // we want to request the API every 10 seconds
+  const requestTimeoutInSeconds = import.meta.env.VITE_REQUEST_INTERVAL;
   window.setInterval(async () => {
     await storeCurrentTemperature(api, store, city);
-  }, requestTimeout);
+  }, requestTimeoutInSeconds * 1000);
 });
 
