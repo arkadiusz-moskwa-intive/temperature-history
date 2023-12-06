@@ -12,10 +12,11 @@ This application uses [Weather API](https://www.weatherapi.com/) for its data, s
 # Optional
 
 - You can change the request interval via `VITE_REQUEST_INTERVAL` env variable
-- You can change the city being quered via `VITE_REQUEST_CITY` env variable
+- You can change the city being queried via `VITE_REQUEST_CITY` env variable
 
 # Usage
 
 - To run a development instance run `npm run start`
 - To build production ready app run `npm run build`
 - To preview production ready app run `npm run preview`
+- To run the test suite run `npm run cy:e2e`
