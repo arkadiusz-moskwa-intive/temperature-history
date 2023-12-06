@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-inject": "^5.0.5",
+    "cypress": "^13.6.1",
     "vite": "^5.0.0"
   },
   "dependencies": {
