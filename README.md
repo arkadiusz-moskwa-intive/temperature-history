@@ -2,7 +2,8 @@
 Sample application showing current temperature and history over time
 
 # Requirements
-This application uses [Weather API](https://www.weatherapi.com/) for its data, so you need an account to use the free API.
+- [Weather API](https://www.weatherapi.com/) API KEY for supplying data, so you need an account to use the free API.
+- `Node` to install dependencies
 
 # Setup
 
