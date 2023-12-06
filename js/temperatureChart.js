@@ -21,7 +21,7 @@ export const TemperatureChart = class {
       {
         type: 'line',
         data: {
-          labels: temperatures.map(obj => Math.round((lastEpoch - obj.id) / 1000)),
+          labels: temperatures.map(obj => (new Date(obj.id)).toUTCString()),
           datasets: [
             {label: 'Temperature', data: temperatures.map(obj => obj.temperature)}
           ]
@@ -33,12 +33,6 @@ export const TemperatureChart = class {
           },
           maintainAspectRatio: false,
           scales: {
-            x: {
-              title: {
-                display: true,
-                text: 'Time ago [s]'
-              },
-            },
             y: {
               title: {
                 display: true,
